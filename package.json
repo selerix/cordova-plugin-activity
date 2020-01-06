@@ -1,0 +1,35 @@
+{
+  "name": "cordova-plugin-activity",
+  "description": "Plugin for Cordova that allows access application native options.",
+  "version": "1.0.0",
+  "homepage": "https://github.com/selerix/cordova-plugin-activity#readme",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/selerix/cordova-plugin-activity.git"
+  },
+  "bugs": {
+    "url": "https://github.com/selerix/cordova-plugin-activity/issues"
+  },
+  "cordova": {
+    "id": "com.selerix.cordova.plugin.activity",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "engines": {
+      "name": "cordova",
+      "version": ">=6.1.1"
+  },
+  "author": "Selerix Systems Inc.",
+  "license": "MIT",
+  "scripts": {
+  },
+  "devDependencies": {
+  }
+}

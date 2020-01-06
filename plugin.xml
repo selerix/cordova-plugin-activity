@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cordova-plugin-activity"
+    version="1.0.0">
+
+    <name>Activity plugin</name>
+    <repo>https://github.com/selerix/cordova-plugin-activity.git</repo>    
+    <license>MIT</license>
+    <author>Selerix systems</author>
+    <description>Plugin for Cordova that allows access application native options.</description>
+
+    <!-- android -->
+    <platform name="android">
+
+        <js-module src="www/Activity.js" name="Activity">
+            <clobbers target="Activity" /><!-- will be available under window.Activity -->
+        </js-module>
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Activity" >
+                <param name="android-package" value="com.selerix.cordova.plugin.Activity"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/Activity.java" target-dir="src/com/selerix/cordova/plugin" />
+
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <js-module src="www/Activity.js" name="Activity">
+            <clobbers target="Activity" />
+        </js-module>
+
+        <config-file target="config.xml" parent="/*">
+            <feature name="Activity">
+                <param name="ios-package" value="Activity" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/Activity.h" />
+        <source-file src="src/ios/Activity.m" />
+    </platform>
+
+    
+</plugin>
