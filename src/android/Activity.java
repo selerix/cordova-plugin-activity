@@ -37,6 +37,16 @@ public class Activity extends CordovaPlugin {
     private static final String LOG_TAG = "Activity";
     private static final String MESSAGE_TASK = "Cordova Android Activity.getExtras() called.";
 
+    private final Bundle extras;
+
+    @Override
+    public void pluginInitialize() {
+        Bundle options = this.cordova.getActivity().getIntent().getExtras();
+        if (options != null) {
+            extras = options;
+        }
+    }
+
     @Override
     public boolean execute(final String action, final JSONArray args, final CallbackContext callbackContext)
             throws JSONException {
@@ -44,15 +54,18 @@ public class Activity extends CordovaPlugin {
 
             LOG.d(LOG_TAG, MESSAGE_TASK);
             
-            Bundle extras = this.cordova.getActivity().getIntent().getExtras();
-            JSONObject r = new JSONObject();
-            if (extras != null) {               
+            if(extras != null) {
+                JSONObject r = new JSONObject();
                 for (String key : extras.keySet()) {
                     Object value = extras.get(key);
                     r.put(key, value);
                 }
+                callbackContext.success(r);
             }
-            callbackContext.success(r);            
+            else
+            {
+                callbackContext.error("Application started without options, or something going wrong.");
+            }                        
         } else {
             return false;
         }
