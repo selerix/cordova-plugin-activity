@@ -35,7 +35,7 @@
 - (void)finishLaunching:(NSNotification *)notification
 {
     // Put here the code that should be on the AppDelegate.m
-    _extras = [notification.userInfo mutableCopy];
+    _extras = notification.userInfo[UIApplicationLaunchOptionsRemoteNotificationKey];
 }
 
 - (void)getExtras:(CDVInvokedUrlCommand*)command
