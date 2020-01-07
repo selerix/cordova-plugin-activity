@@ -37,7 +37,7 @@ public class Activity extends CordovaPlugin {
     private static final String LOG_TAG = "Activity";
     private static final String MESSAGE_TASK = "Cordova Android Activity.getExtras() called.";
 
-    private final Bundle extras;
+    private Bundle extras;
 
     @Override
     public void pluginInitialize() {
