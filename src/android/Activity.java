@@ -30,6 +30,7 @@ import org.json.JSONObject;
 
 import android.annotation.TargetApi;
 import android.os.Bundle;
+import android.content.Intent;
 
 @TargetApi(19)
 public class Activity extends CordovaPlugin {
