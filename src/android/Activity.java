@@ -48,6 +48,17 @@ public class Activity extends CordovaPlugin {
     }
 
     @Override
+    public void onNewIntent(Intent intent){
+        Bundle options = intent.getExtras();
+
+        if(options != null) {
+            extras = options;
+        }
+
+        super.onNewIntent(intent);
+    }
+
+    @Override
     public boolean execute(final String action, final JSONArray args, final CallbackContext callbackContext)
             throws JSONException {
         if (action.equals("getExtras")) {
