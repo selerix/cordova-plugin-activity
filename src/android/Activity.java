@@ -42,45 +42,58 @@ public class Activity extends CordovaPlugin {
 
     @Override
     public void pluginInitialize() {
-        Bundle options = this.cordova.getActivity().getIntent().getExtras();
-        if (options != null) {
-            extras = options;
-        }
+        extras = this.cordova.getActivity().getIntent().getExtras();
+    }
+
+    @Override
+    public void onPause(boolean multitasking) {
+        extras = null;
+        super.onPause(multitasking);
     }
 
     @Override
     public void onNewIntent(Intent intent){
-        Bundle options = intent.getExtras();
-
-        if(options != null) {
-            extras = options;
-        }
-
         super.onNewIntent(intent);
+
+        Bundle options = intent.getExtras();
+        if(options != extras)
+            extras = options;
+        else
+            extras = null;
     }
 
     @Override
-    public boolean execute(final String action, final JSONArray args, final CallbackContext callbackContext)
-            throws JSONException {
+    public boolean execute(final String action, final JSONArray args, final CallbackContext callbackContext) {
         if (action.equals("getExtras")) {
 
             LOG.d(LOG_TAG, MESSAGE_TASK);
             
             if(extras != null) {
-                JSONObject r = new JSONObject();
-                for (String key : extras.keySet()) {
-                    Object value = extras.get(key);
-                    r.put(key, value);
-                }
-                callbackContext.success(r);
+                callbackContext.success(getJsonExtras(extras));
             }
-            else
-            {
+            else {
                 callbackContext.error("Application started without options, or something going wrong.");
             }                        
         } else {
             return false;
         }
         return true;
+    }
+
+    private JSONObject getJsonExtras(Bundle options) {
+        try {
+            if (options != null) {
+                JSONObject r = new JSONObject();
+                for (String key : options.keySet()) {
+                    Object value = options.get(key);
+                    r.put(key, value);
+                }
+                return r;
+            }
+        } catch (JSONException ex){
+            LOG.d(LOG_TAG, ex.toString());
+            return null;
+        }
+        return null;
     }
 }
