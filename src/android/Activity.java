@@ -48,18 +48,19 @@ public class Activity extends CordovaPlugin {
     @Override
     public void onPause(boolean multitasking) {
         extras = null;
+        
         super.onPause(multitasking);
     }
 
     @Override
     public void onNewIntent(Intent intent){
-        super.onNewIntent(intent);
-
         Bundle options = intent.getExtras();
         if(options != extras)
             extras = options;
         else
             extras = null;
+
+        super.onNewIntent(intent);
     }
 
     @Override
