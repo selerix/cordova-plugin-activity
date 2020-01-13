@@ -43,6 +43,8 @@
 
         <header-file src="src/ios/Activity.h" />
         <source-file src="src/ios/Activity.m" />
+        <header-file src="src/ios/AppDelegate+extras.h"/>
+        <source-file src="src/ios/AppDelegate+extras.m"/>
     </platform>
 
     
