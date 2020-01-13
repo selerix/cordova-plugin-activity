@@ -6,11 +6,11 @@
 //
 //
 
-#import "AppDelegate+notification.h"
+#import "AppDelegate+extras.h"
 #import "Activity.h"
 #import <objc/runtime.h>
 
-@implementation AppDelegate (notification)
+@implementation AppDelegate (extras)
 
 + (void)load
 {

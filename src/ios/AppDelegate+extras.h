@@ -1,6 +1,6 @@
 #import "AppDelegate.h"
 @import UserNotifications;
 
-@interface AppDelegate (notification) <UNUserNotificationCenterDelegate>
+@interface AppDelegate (extras) <UNUserNotificationCenterDelegate>
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:( void (^)(UIBackgroundFetchResult))completionHandler;
 @end
