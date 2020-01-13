@@ -30,8 +30,10 @@
     @protected
     NSDictionary * _extras;
 }
++ (Activity *) activityPlugin;
 
 -(void) getExtras: (CDVInvokedUrlCommand*)command;
+-(void) setExtras: (NSMutableDictionary*)userInfo;
 
 // retain command for async responses
 @property (nonatomic, strong) CDVInvokedUrlCommand* command;

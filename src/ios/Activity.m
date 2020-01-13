@@ -25,17 +25,17 @@
 
 @synthesize command;
 
-- (void)pluginInitialize
-{
+static Activity *activityPlugin;
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishLaunching:) name:UIApplicationDidFinishLaunchingNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goesInactive:) name:UIApplicationWillResignActiveNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goesActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
++ (Activity *) activityPlugin 
+{
+    return activityPlugin;
 }
 
-- (void)goesActive:(NSNotification *)notification
-{    
-    _extras = notification.userInfo[UIApplicationLaunchOptionsRemoteNotificationKey];    
+- (void)pluginInitialize
+{
+    activityPlugin = self;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishLaunching:) name:UIApplicationDidFinishLaunchingNotification object:nil];   
 }
 
 - (void)goesInactive:(NSNotification *)notification
@@ -44,8 +44,7 @@
 }
 
 - (void)finishLaunching:(NSNotification *)notification
-{
-    // Put here the code that should be on the AppDelegate.m
+{    
     _extras = notification.userInfo[UIApplicationLaunchOptionsRemoteNotificationKey];
 }
 
@@ -67,6 +66,12 @@
 
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     }
+}
+
+- (void)setExtras:(NSMutableDictionary*)userInfo
+{
+    NSLog(@"Cordova iOS Activity.setExtras() called.");
+    NSLog(@"Application userInfo: %@", userInfo);
 }
 
 - (NSDictionary *) extras
