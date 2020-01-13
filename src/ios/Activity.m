@@ -29,7 +29,18 @@
 {
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishLaunching:) name:UIApplicationDidFinishLaunchingNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goesInactive:) name:UIApplicationWillResignActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goesActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
+}
 
+- (void)goesActive:(NSNotification *)notification
+{    
+    _extras = notification.userInfo[UIApplicationLaunchOptionsRemoteNotificationKey];    
+}
+
+- (void)goesInactive:(NSNotification *)notification
+{    
+    _extras = nil;
 }
 
 - (void)finishLaunching:(NSNotification *)notification
