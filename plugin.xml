@@ -8,7 +8,7 @@
     <repo>https://github.com/selerix/cordova-plugin-activity.git</repo>    
     <license>MIT</license>
     <author>Selerix systems</author>
-    <description>Plugin for Cordova that allows access application native options.</description>
+    <description>Plugin for Cordova that allows access application startup options.</description>
 
     <!-- android -->
     <platform name="android">

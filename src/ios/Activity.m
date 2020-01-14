@@ -35,7 +35,8 @@ static Activity *activityPlugin;
 - (void)pluginInitialize
 {
     activityPlugin = self;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishLaunching:) name:UIApplicationDidFinishLaunchingNotification object:nil];   
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishLaunching:) name:UIApplicationDidFinishLaunchingNotification object:nil]; 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goesInactive:) name:UIApplicationWillResignActiveNotification object:nil];  
 }
 
 - (void)goesInactive:(NSNotification *)notification
@@ -68,10 +69,11 @@ static Activity *activityPlugin;
     }
 }
 
-- (void)setExtras:(NSMutableDictionary*)userInfo
+- (void)setExtras:(NSDictionary*)userInfo
 {
     NSLog(@"Cordova iOS Activity.setExtras() called.");
     NSLog(@"Application userInfo: %@", userInfo);
+    _extras = userInfo;
 }
 
 - (NSDictionary *) extras
